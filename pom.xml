@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.mx.leenustechs</groupId>
-	<artifactId>lightroomapi</artifactId>
+	<artifactId>lightroommanager</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>lightroomapi</name>
+	<name>lightroommanager</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>

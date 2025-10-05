@@ -27,7 +27,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_REGISTRY }}/leenustechs-lightroomapi-service:${{ github.sha }}
+          tags: ${{ secrets.DOCKER_REGISTRY }}/leenustechs-lightroommanager-service:${{ github.sha }}
           build-args: |
             KAFKA_BOOTSTRAP_ADDRESS=${{ secrets.KAFKA_BOOTSTRAP_ADDRESS }}
             KAFKA_TOPIC_NAME=${{ secrets.KAFKA_TOPIC_NAME }}
@@ -39,7 +39,7 @@ jobs:
           git fetch --all
           git checkout leenustechs/infrastructure-manifest-dev
           git pull
-          sed -i "s|image: .*|image: ${{ secrets.DOCKER_REGISTRY }}/leenustechs-lightroomapi-service:${{ github.sha }}|" .k8s/deployment.yaml
+          sed -i "s|image: .*|image: ${{ secrets.DOCKER_REGISTRY }}/leenustechs-lightroommanager-service:${{ github.sha }}|" .k8s/deployment.yaml
 
       - name: Setup Git credentials
         run: |

@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: leenustechs-lightroomapi-service
+  name: leenustechs-lightroommanager-service
   namespace: default
   labels:
-    app: leenustechs-lightroomapi-service
+    app: leenustechs-lightroommanager-service
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: leenustechs-lightroomapi-service
+      app: leenustechs-lightroommanager-service
   template:
     metadata:
       labels:
-        app: leenustechs-lightroomapi-service
+        app: leenustechs-lightroommanager-service
     spec:
       containers:
-        - name: lightroomapi
-          image: ${{ secrets.DOCKER_REGISTRY }}/leenustechs-lightroomapi-service:latest
+        - name: lightroommanager
+          image: ${{ secrets.DOCKER_REGISTRY }}/leenustechs-lightroommanager-service:latest
           ports:
             - containerPort: 8085
           resources:
@@ -29,13 +29,13 @@ spec:
               cpu: "250m"
           readinessProbe:
             httpGet:
-              path: /lightroomapi/v1/actuator/health
+              path: /lightroommanager/v1/actuator/health
               port: 8085
             initialDelaySeconds: 10
             periodSeconds: 10
           livenessProbe:
             httpGet:
-              path: /lightroomapi/v1/actuator/health
+              path: /lightroommanager/v1/actuator/health
               port: 8085
             initialDelaySeconds: 30
             periodSeconds: 30
