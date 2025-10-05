@@ -1,0 +1,61 @@
+# ---- macOS ----
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.TemporaryItems
+.fseventsd
+
+# ---- VSCode ----
+.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# ---- Java ----
+*.class
+*.log
+*.ctxt
+hs_err_pid*
+
+# ---- Maven ----
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# ---- Gradle ----
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# ---- Eclipse (por si abres el proyecto ahí) ----
+.project
+.classpath
+.settings/
+bin/
+
+# ---- IntelliJ IDEA (por si alguien abre el proyecto ahí) ----
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# ---- Archivos comunes ----
+*.env
+*.log
+*.tmp
+*.swp
+
+*local*

@@ -1,0 +1,54 @@
+name: Build & Deploy Java Microservice
+
+on:
+  push:
+    branches:
+      - leenustechs/dev
+
+permissions:
+  contents: write  # 🔐 Necesario para permitir commits y pushes
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    env:
+      KAFKA_TOPIC_NAME: ${{ secrets.KAFKA_TOPIC_NAME }}
+      KAFKA_BOOTSTRAP_ADDRESS: ${{ secrets.KAFKA_BOOTSTRAP_ADDRESS }}
+      SYNC_MANAGER_URL: ${{ secrets.SYNC_MANAGER_URL }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Build and Push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_REGISTRY }}/leenustechs-lightroomapi-service:${{ github.sha }}
+          build-args: |
+            KAFKA_BOOTSTRAP_ADDRESS=${{ secrets.KAFKA_BOOTSTRAP_ADDRESS }}
+            KAFKA_TOPIC_NAME=${{ secrets.KAFKA_TOPIC_NAME }}
+            SYNC_MANAGER_URL=${{ secrets.SYNC_MANAGER_URL }}
+
+
+      - name: Update Deployment manifest
+        run: |
+          git fetch --all
+          git checkout leenustechs/infrastructure-manifest-dev
+          git pull
+          sed -i "s|image: .*|image: ${{ secrets.DOCKER_REGISTRY }}/leenustechs-lightroomapi-service:${{ github.sha }}|" .k8s/deployment.yaml
+
+      - name: Setup Git credentials
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+
+      - name: Commit and push manifest
+        run: |
+          git add .k8s/deployment.yaml
+          git commit -m "Update image to ${{ github.sha }}" || echo "No changes to commit"
+          git push --set-upstream origin leenustechs/infrastructure-manifest-dev
