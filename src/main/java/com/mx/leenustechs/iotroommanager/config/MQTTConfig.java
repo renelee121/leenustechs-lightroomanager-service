@@ -30,7 +30,7 @@ public class MQTTConfig {
         MqttConnectOptions options = new MqttConnectOptions();
         options.setCleanSession(true);
         options.setAutomaticReconnect(true);
-        if (!username.isEmpty()) {
+        if (!username.isEmpty() || !username.isBlank()) {
             options.setUserName(username);
             options.setPassword(password.toCharArray());
         }
