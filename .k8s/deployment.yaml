@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: lightroommanager
-          image: ${{ secrets.DOCKER_REGISTRY }}/leenustechs-lightroommanager-service:latest
+          image: hostinger.leenustechs.com.mx:5000/leenustechs-lightroommanager-service:1b71e98aa40c9c4ad84276362e7ce33926a46f67
           ports:
             - containerPort: 8084
           resources:
