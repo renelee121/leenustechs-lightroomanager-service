@@ -13,9 +13,15 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      KAFKA_TOPIC_NAME: ${{ secrets.KAFKA_TOPIC_NAME }}
+      KAFKA_REQUEST_TOPIC_NAME: ${{ secrets.KAFKA_REQUEST_TOPIC_NAME }}
+      KAFKA_RESPONSE_TOPIC_NAME: ${{ secrets.KAFKA_RESPONSE_TOPIC_NAME }}
       KAFKA_BOOTSTRAP_ADDRESS: ${{ secrets.KAFKA_BOOTSTRAP_ADDRESS }}
-      SYNC_MANAGER_URL: ${{ secrets.SYNC_MANAGER_URL }}
+      MQTT_BROKER: ${{ secrets.MQTT_BROKER }}
+      MQTT_CLIENT_ID: ${{ secrets.MQTT_CLIENT_ID }}
+      MQTT_USERNAME: ${{ secrets.MQTT_USERNAME }}
+      MQTT_PASSWORD: ${{ secrets.MQTT_PASSWORD }}
+      MQTT_REQUEST_TOPIC_NAME: ${{ secrets.MQTT_REQUEST_TOPIC_NAME }}
+      MQTT_RESPONSE_TOPIC_NAME: ${{ secrets.MQTT_RESPONSE_TOPIC_NAME }}
 
     steps:
       - name: Checkout repo
@@ -32,6 +38,14 @@ jobs:
             KAFKA_BOOTSTRAP_ADDRESS=${{ secrets.KAFKA_BOOTSTRAP_ADDRESS }}
             KAFKA_TOPIC_NAME=${{ secrets.KAFKA_TOPIC_NAME }}
             SYNC_MANAGER_URL=${{ secrets.SYNC_MANAGER_URL }}
+            KAFKA_REQUEST_TOPIC_NAME=${{ secrets.KAFKA_REQUEST_TOPIC_NAME }}
+            KAFKA_RESPONSE_TOPIC_NAME=${{ secrets.KAFKA_RESPONSE_TOPIC_NAME }}
+            MQTT_BROKER=${{ secrets.MQTT_BROKER }}
+            MQTT_CLIENT_ID=${{ secrets.MQTT_CLIENT_ID }}
+            MQTT_USERNAME=${{ secrets.MQTT_USERNAME }}
+            MQTT_PASSWORD=${{ secrets.MQTT_PASSWORD }}
+            MQTT_REQUEST_TOPIC_NAME=${{ secrets.MQTT_REQUEST_TOPIC_NAME }}
+            MQTT_RESPONSE_TOPIC_NAME=${{ secrets.MQTT_RESPONSE_TOPIC_NAME }}
 
 
       - name: Update Deployment manifest
