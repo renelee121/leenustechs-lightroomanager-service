@@ -34,7 +34,7 @@ Ejemplo de comando recibido desde Kafka:
 
 ```json
 {
-  "operationType": "OUTPUT",
+  "operationType": "INPUT",
   "payload": {
     "status": "HIGH",
     "gpio": "GPIO_02",
