@@ -19,7 +19,7 @@ spec:
         - name: lightroommanager
           image: ${{ secrets.DOCKER_REGISTRY }}/leenustechs-lightroommanager-service:latest
           ports:
-            - containerPort: 8085
+            - containerPort: 8084
           resources:
             limits:
               memory: "512Mi"
@@ -30,12 +30,12 @@ spec:
           readinessProbe:
             httpGet:
               path: /lightroommanager/v1/actuator/health
-              port: 8085
+              port: 8084
             initialDelaySeconds: 10
             periodSeconds: 10
           livenessProbe:
             httpGet:
               path: /lightroommanager/v1/actuator/health
-              port: 8085
+              port: 8084
             initialDelaySeconds: 30
             periodSeconds: 30
