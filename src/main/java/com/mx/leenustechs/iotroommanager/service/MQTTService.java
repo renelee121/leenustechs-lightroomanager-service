@@ -84,7 +84,7 @@ public class MQTTService {
         })
         .timeout(Duration.ofSeconds(3))
         .retryWhen(
-            Retry.backoff(4, Duration.ofMillis(900)) 
+            Retry.backoff(3, Duration.ofMillis(900)) 
                 .maxBackoff(Duration.ofSeconds(4))
                 .filter(ex -> !(ex instanceof InterruptedException))
         )
