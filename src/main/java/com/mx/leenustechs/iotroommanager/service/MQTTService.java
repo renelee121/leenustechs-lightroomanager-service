@@ -82,9 +82,9 @@ public class MQTTService {
 
             return responseFuture;
         })
-        .timeout(Duration.ofSeconds(5))
+        .timeout(Duration.ofSeconds(3))
         .retryWhen(
-            Retry.backoff(3, Duration.ofMillis(1500)) // 3 reintentos: 5s + (3 + 4.5s backoff) + 5s final ≈ 15s total
+            Retry.backoff(4, Duration.ofMillis(900)) 
                 .maxBackoff(Duration.ofSeconds(4))
                 .filter(ex -> !(ex instanceof InterruptedException))
         )
