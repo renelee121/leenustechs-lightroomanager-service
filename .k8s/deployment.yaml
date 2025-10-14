@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: lightroommanager
-          image: hostinger.leenustechs.com.mx:5000/leenustechs-lightroommanager-service:d6d896aee1188fad24d44ef6243778ebf8970c13
+          image: hostinger.leenustechs.com.mx:5000/leenustechs-lightroommanager-service:0b288b8d54c43385d027b26ea967bf667fe441d4
           ports:
             - containerPort: 8084
           resources:
