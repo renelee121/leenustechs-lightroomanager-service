@@ -84,8 +84,8 @@ public class MQTTService {
         })
         .timeout(Duration.ofSeconds(3))
         .retryWhen(
-            Retry.backoff(3, Duration.ofMillis(900)) 
-                .maxBackoff(Duration.ofSeconds(4))
+            Retry.backoff(3, Duration.ofMillis(800)) 
+                .maxBackoff(Duration.ofSeconds(3))
                 .filter(ex -> !(ex instanceof InterruptedException))
         )
         .onErrorResume(ex -> Mono.just(buildTimeoutResponse(requestObj)))
